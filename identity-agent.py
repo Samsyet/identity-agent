@@ -1,4 +1,5 @@
 from __future__ import annotations
+import asyncio
 import random
 
 from hive_hook import start_server, send_to_hive, EndpointEnum, hive_hook, hive_data, HiveInboundBaseData
@@ -15,9 +16,7 @@ async def process(state: State) -> Dict[str, Any]:
     
     delay = random.randint(10, 20)
     await asyncio.sleep(delay)
-
-    data = hive_data.get("binary", BinaryData)
-    num_ones = data.binary.count("1")
+    num_ones = binary_number.count("1")
 
     await send_to_hive(
         destination_agent_id="application_agent",
